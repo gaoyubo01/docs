@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>浏览器的底层渲染机制 | 前端知识集锦</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/docs/assets/img/gyb1.png">
+    <meta name="description" content="前端知识集锦">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.e7cadaab.css" as="style"><link rel="preload" href="/docs/assets/js/app.ed603c7f.js" as="script"><link rel="preload" href="/docs/assets/js/2.2054bdc6.js" as="script"><link rel="preload" href="/docs/assets/js/50.76d5b479.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.4583efec.js"><link rel="prefetch" href="/docs/assets/js/11.bd44fb79.js"><link rel="prefetch" href="/docs/assets/js/12.98238dc9.js"><link rel="prefetch" href="/docs/assets/js/13.ebda858f.js"><link rel="prefetch" href="/docs/assets/js/14.c6016937.js"><link rel="prefetch" href="/docs/assets/js/15.207ba379.js"><link rel="prefetch" href="/docs/assets/js/16.7b0b4120.js"><link rel="prefetch" href="/docs/assets/js/17.5edbc771.js"><link rel="prefetch" href="/docs/assets/js/18.3405fd02.js"><link rel="prefetch" href="/docs/assets/js/19.d64d53a1.js"><link rel="prefetch" href="/docs/assets/js/20.9732a242.js"><link rel="prefetch" href="/docs/assets/js/21.cf036541.js"><link rel="prefetch" href="/docs/assets/js/22.83affaaf.js"><link rel="prefetch" href="/docs/assets/js/23.77f3b284.js"><link rel="prefetch" href="/docs/assets/js/24.02208b7e.js"><link rel="prefetch" href="/docs/assets/js/25.d975d0f6.js"><link rel="prefetch" href="/docs/assets/js/26.0668f92c.js"><link rel="prefetch" href="/docs/assets/js/27.fdf1ac8f.js"><link rel="prefetch" href="/docs/assets/js/28.5b9c90ee.js"><link rel="prefetch" href="/docs/assets/js/29.0b0b2b7d.js"><link rel="prefetch" href="/docs/assets/js/3.4b455cac.js"><link rel="prefetch" href="/docs/assets/js/30.282b7aba.js"><link rel="prefetch" href="/docs/assets/js/31.5f261e33.js"><link rel="prefetch" href="/docs/assets/js/32.0c612280.js"><link rel="prefetch" href="/docs/assets/js/33.3453e25c.js"><link rel="prefetch" href="/docs/assets/js/34.058b6c9a.js"><link rel="prefetch" href="/docs/assets/js/35.59955b61.js"><link rel="prefetch" href="/docs/assets/js/36.bf8e44ea.js"><link rel="prefetch" href="/docs/assets/js/37.4f2f0662.js"><link rel="prefetch" href="/docs/assets/js/38.8a3c22e5.js"><link rel="prefetch" href="/docs/assets/js/39.1805b314.js"><link rel="prefetch" href="/docs/assets/js/4.e028ef5d.js"><link rel="prefetch" href="/docs/assets/js/40.1bb81a0c.js"><link rel="prefetch" href="/docs/assets/js/41.6557428b.js"><link rel="prefetch" href="/docs/assets/js/42.ce578e43.js"><link rel="prefetch" href="/docs/assets/js/43.826d0486.js"><link rel="prefetch" href="/docs/assets/js/44.67962950.js"><link rel="prefetch" href="/docs/assets/js/45.a612ceaf.js"><link rel="prefetch" href="/docs/assets/js/46.3db18ddb.js"><link rel="prefetch" href="/docs/assets/js/47.ad8da55f.js"><link rel="prefetch" href="/docs/assets/js/48.1b4b141f.js"><link rel="prefetch" href="/docs/assets/js/49.aac95103.js"><link rel="prefetch" href="/docs/assets/js/5.f2d4eaa2.js"><link rel="prefetch" href="/docs/assets/js/51.24ee2be5.js"><link rel="prefetch" href="/docs/assets/js/52.3b52606e.js"><link rel="prefetch" href="/docs/assets/js/53.49b8ee8c.js"><link rel="prefetch" href="/docs/assets/js/54.34cfbda8.js"><link rel="prefetch" href="/docs/assets/js/55.4c1d95c6.js"><link rel="prefetch" href="/docs/assets/js/56.1b7074d1.js"><link rel="prefetch" href="/docs/assets/js/57.4cbbd4ec.js"><link rel="prefetch" href="/docs/assets/js/58.5c8d2c9a.js"><link rel="prefetch" href="/docs/assets/js/59.20e3ef10.js"><link rel="prefetch" href="/docs/assets/js/6.919bf364.js"><link rel="prefetch" href="/docs/assets/js/60.a7fbfaea.js"><link rel="prefetch" href="/docs/assets/js/61.f8b03426.js"><link rel="prefetch" href="/docs/assets/js/62.1ae6ee0f.js"><link rel="prefetch" href="/docs/assets/js/63.9a52607f.js"><link rel="prefetch" href="/docs/assets/js/64.dc2349d6.js"><link rel="prefetch" href="/docs/assets/js/65.6bd50c23.js"><link rel="prefetch" href="/docs/assets/js/66.d36859d5.js"><link rel="prefetch" href="/docs/assets/js/67.15e34695.js"><link rel="prefetch" href="/docs/assets/js/68.6445c807.js"><link rel="prefetch" href="/docs/assets/js/69.5844727c.js"><link rel="prefetch" href="/docs/assets/js/7.81b6b31f.js"><link rel="prefetch" href="/docs/assets/js/70.696b063c.js"><link rel="prefetch" href="/docs/assets/js/71.a9ad7248.js"><link rel="prefetch" href="/docs/assets/js/72.b1bb212c.js"><link rel="prefetch" href="/docs/assets/js/73.e1d846fc.js"><link rel="prefetch" href="/docs/assets/js/74.0328c739.js"><link rel="prefetch" href="/docs/assets/js/75.cb6a6b8e.js"><link rel="prefetch" href="/docs/assets/js/76.8511d247.js"><link rel="prefetch" href="/docs/assets/js/77.ec1b6912.js"><link rel="prefetch" href="/docs/assets/js/78.61f77df2.js"><link rel="prefetch" href="/docs/assets/js/79.01f24ff7.js"><link rel="prefetch" href="/docs/assets/js/8.e3f7b3c2.js"><link rel="prefetch" href="/docs/assets/js/80.227462fc.js"><link rel="prefetch" href="/docs/assets/js/81.ad8ef9e5.js"><link rel="prefetch" href="/docs/assets/js/82.ebe120af.js"><link rel="prefetch" href="/docs/assets/js/83.9184df13.js"><link rel="prefetch" href="/docs/assets/js/84.803f02b8.js"><link rel="prefetch" href="/docs/assets/js/85.03e3e8fb.js"><link rel="prefetch" href="/docs/assets/js/86.ab25fb59.js"><link rel="prefetch" href="/docs/assets/js/87.40333ed8.js"><link rel="prefetch" href="/docs/assets/js/88.9f886285.js"><link rel="prefetch" href="/docs/assets/js/89.37469a27.js"><link rel="prefetch" href="/docs/assets/js/9.398e8a46.js"><link rel="prefetch" href="/docs/assets/js/90.ac5165da.js"><link rel="prefetch" href="/docs/assets/js/91.cc9fa4e9.js"><link rel="prefetch" href="/docs/assets/js/92.158ae4bf.js"><link rel="prefetch" href="/docs/assets/js/93.b869e3ac.js"><link rel="prefetch" href="/docs/assets/js/94.af9270f8.js"><link rel="prefetch" href="/docs/assets/js/95.d3a4ea4f.js"><link rel="prefetch" href="/docs/assets/js/96.7f77465c.js"><link rel="prefetch" href="/docs/assets/js/97.ee5dc6af.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.e7cadaab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">前端知识集锦</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/zh/standard/Start.html" class="nav-link">
+  快速搭建开发环境
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心知识" class="dropdown-title"><span class="title">核心知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心知识" class="mobile-dropdown-title"><span class="title">核心知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/js/stack.html" class="nav-link">
+  堆栈内存及闭包作用域
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/TypeConversion.html" class="nav-link">
+  探索JS中的数据类型转换
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/amd.html" class="nav-link">
+  AMD设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/object.html" class="nav-link">
+  面向对象
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/eventloop.html" class="nav-link">
+  事件循环
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/render.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  底层渲染
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/request.html" class="nav-link">
+  数据请求
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/HTTP.html" class="nav-link">
+  HTTP网络层的 “前端性能优化”
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket.html" class="nav-link">
+  WebSocket 详解
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket2.html" class="nav-link">
+  WebSocket心跳检测和重连机制
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/zh/algorithm/Index.html" class="nav-link">
+  算法
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目相关" class="dropdown-title"><span class="title">项目相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="项目相关" class="mobile-dropdown-title"><span class="title">项目相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Standard.html" class="nav-link">
+  前端规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Project.html" class="nav-link">
+  项目流程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cooperation.html" class="nav-link">
+  前后端交互
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Compatibility.html" class="nav-link">
+  移动端兼容问题
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Improve.html" class="nav-link">
+  项目优化
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cache.html" class="nav-link">
+  浏览器缓存
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Spa.html" class="nav-link">
+  单页面应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Pwa.html" class="nav-link">
+  渐进式web应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Security.html" class="nav-link">
+  网络安全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识点笔记" class="dropdown-title"><span class="title">知识点笔记</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识点笔记" class="mobile-dropdown-title"><span class="title">知识点笔记</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/miniapp/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/webpack/" class="nav-link">
+  Webpack
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Hooks.html" class="nav-link">
+  React Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/typescript.html" class="nav-link">
+  TypeScript 基础用法
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/deepTypescript.html" class="nav-link">
+  TypeScript 高级用法
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/zh/standard/Start.html" class="nav-link">
+  快速搭建开发环境
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心知识" class="dropdown-title"><span class="title">核心知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心知识" class="mobile-dropdown-title"><span class="title">核心知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/js/stack.html" class="nav-link">
+  堆栈内存及闭包作用域
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/TypeConversion.html" class="nav-link">
+  探索JS中的数据类型转换
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/amd.html" class="nav-link">
+  AMD设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/object.html" class="nav-link">
+  面向对象
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/eventloop.html" class="nav-link">
+  事件循环
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/render.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  底层渲染
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/request.html" class="nav-link">
+  数据请求
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/HTTP.html" class="nav-link">
+  HTTP网络层的 “前端性能优化”
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket.html" class="nav-link">
+  WebSocket 详解
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket2.html" class="nav-link">
+  WebSocket心跳检测和重连机制
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/zh/algorithm/Index.html" class="nav-link">
+  算法
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目相关" class="dropdown-title"><span class="title">项目相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="项目相关" class="mobile-dropdown-title"><span class="title">项目相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Standard.html" class="nav-link">
+  前端规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Project.html" class="nav-link">
+  项目流程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cooperation.html" class="nav-link">
+  前后端交互
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Compatibility.html" class="nav-link">
+  移动端兼容问题
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Improve.html" class="nav-link">
+  项目优化
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cache.html" class="nav-link">
+  浏览器缓存
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Spa.html" class="nav-link">
+  单页面应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Pwa.html" class="nav-link">
+  渐进式web应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Security.html" class="nav-link">
+  网络安全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识点笔记" class="dropdown-title"><span class="title">知识点笔记</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识点笔记" class="mobile-dropdown-title"><span class="title">知识点笔记</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/miniapp/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/webpack/" class="nav-link">
+  Webpack
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Hooks.html" class="nav-link">
+  React Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/typescript.html" class="nav-link">
+  TypeScript 基础用法
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/deepTypescript.html" class="nav-link">
+  TypeScript 高级用法
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>浏览器的底层渲染机制</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/zh/js/render.html#浏览器的底层渲染机制" class="sidebar-link">浏览器的底层渲染机制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/zh/js/render.html#【dom树】" class="sidebar-link">【DOM树】</a></li><li class="sidebar-sub-header"><a href="/docs/zh/js/render.html#【cssom树】" class="sidebar-link">【CSSOM树】</a></li><li class="sidebar-sub-header"><a href="/docs/zh/js/render.html#【render-tree渲染树】" class="sidebar-link">【Render-Tree渲染树】</a></li><li class="sidebar-sub-header"><a href="/docs/zh/js/render.html#优化方案" class="sidebar-link">优化方案：</a></li></ul></li><li><a href="/docs/zh/js/render.html#减少dom的回流和重绘" class="sidebar-link">减少DOM的回流和重绘</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="浏览器的底层渲染机制"><a href="#浏览器的底层渲染机制" class="header-anchor">#</a> 浏览器的底层渲染机制</h2> <h3 id="【dom树】"><a href="#【dom树】" class="header-anchor">#</a> 【DOM树】</h3> <p><img src="/docs/js/render1.png" alt="render1"></p> <h3 id="【cssom树】"><a href="#【cssom树】" class="header-anchor">#</a> 【CSSOM树】</h3> <p><img src="/docs/js/render2.png" alt="render2"></p> <h3 id="【render-tree渲染树】"><a href="#【render-tree渲染树】" class="header-anchor">#</a> 【Render-Tree渲染树】</h3> <p><img src="/docs/js/render3.png" alt="render3"></p> <div class="language- extra-class"><pre class="language-text"><code>总结步骤：
+
+处理 HTML 标记，构建 DOM 树
+
+处理 CSS 标记，构建 CSSOM 树
+
+将 DOM 树和 CSSOM 树融合成渲染树
+
+根据生成的渲染树，计算它们在设备视口(viewport)内的确切位置和大小，这个计算的阶段就是回流 =&gt; 布局（Layout）或 重排（reflow）
+
+根据渲染树以及回流得到的几何信息，得到节点的绝对像素 =&gt; 绘制（painting）
+
+</code></pre></div><p><img src="/docs/js/render4.png" alt="render4"></p> <h3 id="优化方案"><a href="#优化方案" class="header-anchor">#</a> 优化方案：</h3> <div class="language- extra-class"><pre class="language-text"><code>标签语义化和避免深层次嵌套
+
+CSS选择器渲染是从右到左
+
+尽早尽快地把CSS下载到客户端（充分利用HTTP多请求并发机制）
+
+style
+
+link
+
+@import
+
+放到顶部
+
+避免阻塞的JS加载
+
+async
+
+defer
+
+放到底部
+</code></pre></div><p><img src="/docs/js/render5.png" alt="render5"></p> <blockquote><p>Webkit浏览器预测解析：chrome的预加载扫描器html-preload-scanner通过扫描节点中的 “src” , “link”等属性，找到外部连接资源后进行预加载，避免了资源加载的等待时间，同样实现了提前加载以及加载和执行分离。</p></blockquote> <h2 id="减少dom的回流和重绘"><a href="#减少dom的回流和重绘" class="header-anchor">#</a> 减少DOM的回流和重绘</h2> <p><img src="/docs/js/render6.png" alt="render6"> <img src="/docs/js/render7.png" alt="render7"> <img src="/docs/js/render8.png" alt="render8"> <img src="/docs/js/render9.png" alt="render9"></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.ed603c7f.js" defer></script><script src="/docs/assets/js/2.2054bdc6.js" defer></script><script src="/docs/assets/js/50.76d5b479.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>队列结构 Queue | 前端知识集锦</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/docs/assets/img/gyb1.png">
+    <meta name="description" content="前端知识集锦">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.08317ef2.css" as="style"><link rel="preload" href="/docs/assets/js/app.12ae27ff.js" as="script"><link rel="preload" href="/docs/assets/js/2.7f2a990c.js" as="script"><link rel="preload" href="/docs/assets/js/61.2c02fadd.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.f0612090.js"><link rel="prefetch" href="/docs/assets/js/100.ba5bfb53.js"><link rel="prefetch" href="/docs/assets/js/101.9c092833.js"><link rel="prefetch" href="/docs/assets/js/102.227854d0.js"><link rel="prefetch" href="/docs/assets/js/103.7a2f28f1.js"><link rel="prefetch" href="/docs/assets/js/104.b674f292.js"><link rel="prefetch" href="/docs/assets/js/105.34f4c8bd.js"><link rel="prefetch" href="/docs/assets/js/106.d4e06734.js"><link rel="prefetch" href="/docs/assets/js/107.94e8975a.js"><link rel="prefetch" href="/docs/assets/js/108.9f52a89f.js"><link rel="prefetch" href="/docs/assets/js/109.2a561999.js"><link rel="prefetch" href="/docs/assets/js/11.c06f6a3e.js"><link rel="prefetch" href="/docs/assets/js/110.c86699fa.js"><link rel="prefetch" href="/docs/assets/js/111.c6b9419f.js"><link rel="prefetch" href="/docs/assets/js/112.c7157643.js"><link rel="prefetch" href="/docs/assets/js/113.476e0465.js"><link rel="prefetch" href="/docs/assets/js/114.e804e8ec.js"><link rel="prefetch" href="/docs/assets/js/115.88544413.js"><link rel="prefetch" href="/docs/assets/js/12.de70ccbe.js"><link rel="prefetch" href="/docs/assets/js/13.36fefcf5.js"><link rel="prefetch" href="/docs/assets/js/14.b7be46fd.js"><link rel="prefetch" href="/docs/assets/js/15.6b11697f.js"><link rel="prefetch" href="/docs/assets/js/16.22813a68.js"><link rel="prefetch" href="/docs/assets/js/17.816d27cd.js"><link rel="prefetch" href="/docs/assets/js/18.6a29b08c.js"><link rel="prefetch" href="/docs/assets/js/19.366d661b.js"><link rel="prefetch" href="/docs/assets/js/20.23e3ce09.js"><link rel="prefetch" href="/docs/assets/js/21.ff1497d5.js"><link rel="prefetch" href="/docs/assets/js/22.6868bb3c.js"><link rel="prefetch" href="/docs/assets/js/23.bd929923.js"><link rel="prefetch" href="/docs/assets/js/24.01892ba6.js"><link rel="prefetch" href="/docs/assets/js/25.228f2562.js"><link rel="prefetch" href="/docs/assets/js/26.123c3f24.js"><link rel="prefetch" href="/docs/assets/js/27.fc51838a.js"><link rel="prefetch" href="/docs/assets/js/28.fc384cfc.js"><link rel="prefetch" href="/docs/assets/js/29.16971a76.js"><link rel="prefetch" href="/docs/assets/js/3.0402e6ef.js"><link rel="prefetch" href="/docs/assets/js/30.f637b189.js"><link rel="prefetch" href="/docs/assets/js/31.854313a1.js"><link rel="prefetch" href="/docs/assets/js/32.1013e1a4.js"><link rel="prefetch" href="/docs/assets/js/33.44307ee3.js"><link rel="prefetch" href="/docs/assets/js/34.68c4cb87.js"><link rel="prefetch" href="/docs/assets/js/35.d36b191d.js"><link rel="prefetch" href="/docs/assets/js/36.45fb4331.js"><link rel="prefetch" href="/docs/assets/js/37.8108cd53.js"><link rel="prefetch" href="/docs/assets/js/38.9f8770c9.js"><link rel="prefetch" href="/docs/assets/js/39.1af239f1.js"><link rel="prefetch" href="/docs/assets/js/4.70399a60.js"><link rel="prefetch" href="/docs/assets/js/40.eebf8f04.js"><link rel="prefetch" href="/docs/assets/js/41.da834437.js"><link rel="prefetch" href="/docs/assets/js/42.a215ccc8.js"><link rel="prefetch" href="/docs/assets/js/43.53e92a61.js"><link rel="prefetch" href="/docs/assets/js/44.60ee5ff5.js"><link rel="prefetch" href="/docs/assets/js/45.1b581a6c.js"><link rel="prefetch" href="/docs/assets/js/46.d0c3f501.js"><link rel="prefetch" href="/docs/assets/js/47.b390aeea.js"><link rel="prefetch" href="/docs/assets/js/48.44f2c2c8.js"><link rel="prefetch" href="/docs/assets/js/49.5f56efe0.js"><link rel="prefetch" href="/docs/assets/js/5.4a2aaf5b.js"><link rel="prefetch" href="/docs/assets/js/50.d066268b.js"><link rel="prefetch" href="/docs/assets/js/51.5e5299fa.js"><link rel="prefetch" href="/docs/assets/js/52.d0582b86.js"><link rel="prefetch" href="/docs/assets/js/53.32818fed.js"><link rel="prefetch" href="/docs/assets/js/54.b628e459.js"><link rel="prefetch" href="/docs/assets/js/55.a6b4d11b.js"><link rel="prefetch" href="/docs/assets/js/56.7d9b656d.js"><link rel="prefetch" href="/docs/assets/js/57.15e33faa.js"><link rel="prefetch" href="/docs/assets/js/58.8a48268e.js"><link rel="prefetch" href="/docs/assets/js/59.1f3db316.js"><link rel="prefetch" href="/docs/assets/js/6.8cda7b0a.js"><link rel="prefetch" href="/docs/assets/js/60.cbc8c445.js"><link rel="prefetch" href="/docs/assets/js/62.d6fbb492.js"><link rel="prefetch" href="/docs/assets/js/63.87413035.js"><link rel="prefetch" href="/docs/assets/js/64.a4fb6045.js"><link rel="prefetch" href="/docs/assets/js/65.596c7a29.js"><link rel="prefetch" href="/docs/assets/js/66.d5b16085.js"><link rel="prefetch" href="/docs/assets/js/67.95d3305c.js"><link rel="prefetch" href="/docs/assets/js/68.558c9357.js"><link rel="prefetch" href="/docs/assets/js/69.7dee7edc.js"><link rel="prefetch" href="/docs/assets/js/7.5b67fd07.js"><link rel="prefetch" href="/docs/assets/js/70.05a6639e.js"><link rel="prefetch" href="/docs/assets/js/71.6302fc88.js"><link rel="prefetch" href="/docs/assets/js/72.d8b3948d.js"><link rel="prefetch" href="/docs/assets/js/73.35d5c961.js"><link rel="prefetch" href="/docs/assets/js/74.5f71638e.js"><link rel="prefetch" href="/docs/assets/js/75.f84ff077.js"><link rel="prefetch" href="/docs/assets/js/76.c56d04fc.js"><link rel="prefetch" href="/docs/assets/js/77.fd02eab3.js"><link rel="prefetch" href="/docs/assets/js/78.e46ac28a.js"><link rel="prefetch" href="/docs/assets/js/79.fcd8de88.js"><link rel="prefetch" href="/docs/assets/js/8.a1260e84.js"><link rel="prefetch" href="/docs/assets/js/80.2c52d0b4.js"><link rel="prefetch" href="/docs/assets/js/81.e7c48451.js"><link rel="prefetch" href="/docs/assets/js/82.aaedbf3e.js"><link rel="prefetch" href="/docs/assets/js/83.6fdc1f8e.js"><link rel="prefetch" href="/docs/assets/js/84.23974e95.js"><link rel="prefetch" href="/docs/assets/js/85.840b2296.js"><link rel="prefetch" href="/docs/assets/js/86.43dc4af9.js"><link rel="prefetch" href="/docs/assets/js/87.ff94fa5b.js"><link rel="prefetch" href="/docs/assets/js/88.e643fd60.js"><link rel="prefetch" href="/docs/assets/js/89.b170c005.js"><link rel="prefetch" href="/docs/assets/js/9.b6f8893c.js"><link rel="prefetch" href="/docs/assets/js/90.5984f45f.js"><link rel="prefetch" href="/docs/assets/js/91.79d4a2e2.js"><link rel="prefetch" href="/docs/assets/js/92.af83c55f.js"><link rel="prefetch" href="/docs/assets/js/93.b662f0e8.js"><link rel="prefetch" href="/docs/assets/js/94.134eff3e.js"><link rel="prefetch" href="/docs/assets/js/95.323ad2ca.js"><link rel="prefetch" href="/docs/assets/js/96.f74e94bc.js"><link rel="prefetch" href="/docs/assets/js/97.16dbfea1.js"><link rel="prefetch" href="/docs/assets/js/98.00b2f9a6.js"><link rel="prefetch" href="/docs/assets/js/99.87dcb180.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.08317ef2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">前端知识集锦</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/zh/standard/Start.html" class="nav-link">
+  快速搭建开发环境
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心知识" class="dropdown-title"><span class="title">核心知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心知识" class="mobile-dropdown-title"><span class="title">核心知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/js/stack.html" class="nav-link">
+  堆栈内存及闭包作用域
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/TypeConversion.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  探索JS中的数据类型转换
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/amd.html" class="nav-link">
+  AMD设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/object.html" class="nav-link">
+  面向对象
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/eventloop.html" class="nav-link">
+  事件循环
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/render.html" class="nav-link">
+  底层渲染
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/request.html" class="nav-link">
+  数据请求
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/HTTP.html" class="nav-link">
+  HTTP网络层的 “前端性能优化”
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket.html" class="nav-link">
+  WebSocket 详解
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket2.html" class="nav-link">
+  WebSocket心跳检测和重连机制
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/zh/algorithm/Index.html" class="nav-link">
+  算法
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目相关" class="dropdown-title"><span class="title">项目相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="项目相关" class="mobile-dropdown-title"><span class="title">项目相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Standard.html" class="nav-link">
+  前端规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Git.html" class="nav-link">
+  Git规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Project.html" class="nav-link">
+  项目流程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cooperation.html" class="nav-link">
+  前后端交互
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Compatibility.html" class="nav-link">
+  移动端兼容问题
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Improve.html" class="nav-link">
+  项目优化
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cache.html" class="nav-link">
+  浏览器缓存
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Spa.html" class="nav-link">
+  单页面应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Pwa.html" class="nav-link">
+  渐进式web应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Security.html" class="nav-link">
+  网络安全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="经典面试题" class="dropdown-title"><span class="title">经典面试题</span> <span class="arrow down"></span></button> <button type="button" aria-label="经典面试题" class="mobile-dropdown-title"><span class="title">经典面试题</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/interview/index.html" class="nav-link">
+  面试必看
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/interview/threeYear.html" class="nav-link">
+  三年前端
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/book/" class="nav-link">
+  前端面试大全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架原理" class="dropdown-title"><span class="title">框架原理</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架原理" class="mobile-dropdown-title"><span class="title">框架原理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://segmentfault.com/a/1190000018399478" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://mp.weixin.qq.com/s/aqszbRAFXK5KA9x374Todg" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/docs/zh/IReact/" class="nav-link">
+  React源码解读
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识点笔记" class="dropdown-title"><span class="title">知识点笔记</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识点笔记" class="mobile-dropdown-title"><span class="title">知识点笔记</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/miniapp/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/webpack/" class="nav-link">
+  Webpack
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Hooks.html" class="nav-link">
+  React Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/typescript.html" class="nav-link">
+  TypeScript 基础用法
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/deepTypescript.html" class="nav-link">
+  TypeScript 高级用法
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/zh/standard/Start.html" class="nav-link">
+  快速搭建开发环境
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心知识" class="dropdown-title"><span class="title">核心知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心知识" class="mobile-dropdown-title"><span class="title">核心知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/js/stack.html" class="nav-link">
+  堆栈内存及闭包作用域
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/TypeConversion.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  探索JS中的数据类型转换
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/amd.html" class="nav-link">
+  AMD设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/object.html" class="nav-link">
+  面向对象
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/eventloop.html" class="nav-link">
+  事件循环
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/render.html" class="nav-link">
+  底层渲染
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/request.html" class="nav-link">
+  数据请求
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/HTTP.html" class="nav-link">
+  HTTP网络层的 “前端性能优化”
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket.html" class="nav-link">
+  WebSocket 详解
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket2.html" class="nav-link">
+  WebSocket心跳检测和重连机制
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/zh/algorithm/Index.html" class="nav-link">
+  算法
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目相关" class="dropdown-title"><span class="title">项目相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="项目相关" class="mobile-dropdown-title"><span class="title">项目相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Standard.html" class="nav-link">
+  前端规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Git.html" class="nav-link">
+  Git规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Project.html" class="nav-link">
+  项目流程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cooperation.html" class="nav-link">
+  前后端交互
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Compatibility.html" class="nav-link">
+  移动端兼容问题
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Improve.html" class="nav-link">
+  项目优化
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cache.html" class="nav-link">
+  浏览器缓存
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Spa.html" class="nav-link">
+  单页面应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Pwa.html" class="nav-link">
+  渐进式web应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Security.html" class="nav-link">
+  网络安全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="经典面试题" class="dropdown-title"><span class="title">经典面试题</span> <span class="arrow down"></span></button> <button type="button" aria-label="经典面试题" class="mobile-dropdown-title"><span class="title">经典面试题</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/interview/index.html" class="nav-link">
+  面试必看
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/interview/threeYear.html" class="nav-link">
+  三年前端
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/book/" class="nav-link">
+  前端面试大全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架原理" class="dropdown-title"><span class="title">框架原理</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架原理" class="mobile-dropdown-title"><span class="title">框架原理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://segmentfault.com/a/1190000018399478" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://mp.weixin.qq.com/s/aqszbRAFXK5KA9x374Todg" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/docs/zh/IReact/" class="nav-link">
+  React源码解读
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识点笔记" class="dropdown-title"><span class="title">知识点笔记</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识点笔记" class="mobile-dropdown-title"><span class="title">知识点笔记</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/miniapp/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/webpack/" class="nav-link">
+  Webpack
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Hooks.html" class="nav-link">
+  React Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/typescript.html" class="nav-link">
+  TypeScript 基础用法
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/deepTypescript.html" class="nav-link">
+  TypeScript 高级用法
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>队列结构 Queue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/zh/js/TypeConversion.html#队列结构-queue" class="sidebar-link">队列结构 Queue</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/docs/zh/js/TypeConversion.html#把其他数据类型转换为number" class="sidebar-link">把其他数据类型转换为Number</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/docs/zh/js/TypeConversion.html#把其他数据类型转换为string" class="sidebar-link">把其他数据类型转换为String</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/docs/zh/js/TypeConversion.html#把其他数据类型转换为boolean" class="sidebar-link">把其他数据类型转换为Boolean</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/docs/zh/js/TypeConversion.html#比较时候的相互转换规则" class="sidebar-link">“==”比较时候的相互转换规则</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/docs/zh/js/TypeConversion.html#js-骚-操作之0-1-0-2-0-3" class="sidebar-link">JS“骚”操作之0.1+0.2!==0.3</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="队列结构-queue"><a href="#队列结构-queue" class="header-anchor">#</a> 队列结构 Queue</h2> <blockquote><p>先进先出 FIFO （First In First Out）
+允许在前端（front）删除，允许在后端（rear）插入
+特殊：优先级队列</p></blockquote> <ul><li>自己封装一个队列结构</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">Queue</span> <span class="token punctuation">{</span>
+    container <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">enter</span><span class="token punctuation">(</span><span class="token parameter">element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">leave</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>container<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>面试题：击鼓传花</p> <ul><li>N个人一起玩游戏，围成一圈，从1开始数数，数到M的人自动淘汰；最后剩下的人会取得胜利，问最后剩下的是原来的哪一位？</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">game</span><span class="token punctuation">(</span><span class="token parameter">n<span class="token punctuation">,</span> m</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> qe <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Queue</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        qe<span class="token punctuation">.</span><span class="token function">enter</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>qe<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            qe<span class="token punctuation">.</span><span class="token function">enter</span><span class="token punctuation">(</span>qe<span class="token punctuation">.</span><span class="token function">leave</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        qe<span class="token punctuation">.</span><span class="token function">leave</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> qe<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">game</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="把其他数据类型转换为number"><a href="#把其他数据类型转换为number" class="header-anchor">#</a> 把其他数据类型转换为Number</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">[</span>val<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token operator">+</span> 一般用于浏览器的隐式转换中
+        @<span class="token number">1</span> 数学运算
+        @<span class="token number">2</span> isNaN检测
+        @<span class="token number">3</span> <span class="token operator">==</span>比较
+        <span class="token operator">...</span>
+    <span class="token operator">+</span> 规则：
+        @<span class="token number">1</span> 字符串转换为数字：空字符串变为<span class="token number">0</span>，如果出现任何非有效数字字符，结果都是<span class="token number">NaN</span>
+        @<span class="token number">2</span> 把布尔转换为数字：<span class="token boolean">true</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">1</span>  <span class="token boolean">false</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">0</span>
+        @<span class="token number">3</span> <span class="token keyword">null</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">0</span>  <span class="token keyword">undefined</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">NaN</span>
+        @<span class="token number">4</span> Symbol无法转换为数字，会报错：Uncaught TypeError<span class="token operator">:</span> Cannot convert a Symbol value to a number
+        @<span class="token number">5</span> BigInt去除“n”（超过安全数字的，会按照科学计数法处理）
+        @<span class="token number">6</span> 把对象转换为数字：
+            <span class="token operator">+</span> 先调用对象的 Symbol<span class="token punctuation">.</span>toPrimitive 这个方法，如果不存在这个方法
+            <span class="token operator">+</span> 再调用对象的 valueOf 获取原始值，如果获取的值不是原始值
+            <span class="token operator">+</span> 再调用对象的 toString 把其变为字符串
+            <span class="token operator">+</span> 最后再把字符串基于Number方法转换为数字
+
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token punctuation">[</span>val<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span>radix<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token function">parseFloat</span><span class="token punctuation">(</span><span class="token punctuation">[</span>val<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token operator">+</span> 一般用于手动转换
+    <span class="token operator">+</span> 规则：<span class="token punctuation">[</span>val<span class="token punctuation">]</span>值必须是一个字符串，如果不是则先转换为字符串；然后从字符串左侧第一个字符开始找，把找到的有效数字字符最后转换为数字「一个都没找到就是<span class="token number">NaN</span>」；遇到一个非有效数字字符，不论后面是否还有有效数字字符，都不再查找了；parseFloat可以多识别一个小数点；
+
+练习题：
+<span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">27.2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'0013'</span><span class="token punctuation">,</span> <span class="token string">'14px'</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+arr <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>parseInt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="把其他数据类型转换为string"><a href="#把其他数据类型转换为string" class="header-anchor">#</a> 把其他数据类型转换为String</h2> <div class="language-js extra-class"><pre class="language-js"><code>转化规则：
+    @<span class="token number">1</span> 拿字符串包起来
+    @<span class="token number">2</span> <span class="token class-name">特殊：Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString
+出现情况：
+    @<span class="token number">1</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">[</span>val<span class="token punctuation">]</span><span class="token punctuation">)</span> 或者 <span class="token punctuation">[</span>val<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    @<span class="token number">2</span> “<span class="token operator">+</span>”除数学运算，还可能代表的字符串拼接
+        <span class="token operator">+</span> 有两边，一边是字符串
+        <span class="token operator">+</span> 有两边，一边是对象
+        <span class="token operator">+</span> 只出现在左边
+        <span class="token operator">+</span> <span class="token operator">...</span>
+    <span class="token operator">...</span>
+
+练习题：
+<span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">100</span> <span class="token operator">+</span> <span class="token boolean">true</span> <span class="token operator">+</span> <span class="token number">21.2</span> <span class="token operator">+</span> <span class="token keyword">null</span> <span class="token operator">+</span> <span class="token keyword">undefined</span> <span class="token operator">+</span> <span class="token string">&quot;Tencent&quot;</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token keyword">null</span> <span class="token operator">+</span> <span class="token number">9</span> <span class="token operator">+</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="把其他数据类型转换为boolean"><a href="#把其他数据类型转换为boolean" class="header-anchor">#</a> 把其他数据类型转换为Boolean</h2> <div class="language-js extra-class"><pre class="language-js"><code>转换规则：除了“<span class="token number">0</span><span class="token operator">/</span><span class="token number">NaN</span><span class="token operator">/</span>空字符串<span class="token operator">/</span><span class="token keyword">null</span><span class="token operator">/</span><span class="token keyword">undefined</span>”五个值是<span class="token boolean">false</span>，其余都是<span class="token boolean">true</span>
+出现情况：
+    @<span class="token number">1</span> <span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token punctuation">[</span>val<span class="token punctuation">]</span><span class="token punctuation">)</span> 或者 <span class="token operator">!</span><span class="token operator">/</span><span class="token operator">!</span><span class="token operator">!</span>
+    @<span class="token number">2</span> 条件判断
+    <span class="token operator">...</span>
+</code></pre></div><h2 id="比较时候的相互转换规则"><a href="#比较时候的相互转换规则" class="header-anchor">#</a> “==”比较时候的相互转换规则</h2> <div class="language-js extra-class"><pre class="language-js"><code>“<span class="token operator">==</span>”相等，两边数据类型不同，需要先转为相同类型，然后再进行比较
+    @<span class="token number">1</span> 对象<span class="token operator">==</span>字符串  对象转字符串「Symbol<span class="token punctuation">.</span>toPrimitive <span class="token operator">-</span><span class="token operator">&gt;</span> valueOf <span class="token operator">-</span><span class="token operator">&gt;</span> toString」
+    @<span class="token number">2</span> <span class="token keyword">null</span><span class="token operator">==</span><span class="token keyword">undefined</span>  <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">true</span>   <span class="token keyword">null</span><span class="token operator">/</span><span class="token keyword">undefined</span>和其他任何值都不相等
+       <span class="token keyword">null</span><span class="token operator">===</span><span class="token keyword">undefined</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">false</span>
+    @<span class="token number">3</span> 对象<span class="token operator">==</span>对象  比较的是堆内存地址，地址相同则相等
+    @<span class="token number">4</span> <span class="token number">NaN</span><span class="token operator">!==</span><span class="token number">NaN</span> 
+    @<span class="token number">5</span> 除了以上情况，只要两边类型不一致，剩下的都是转换为数字，然后再进行比较的   
+“<span class="token operator">===</span>”绝对相等，如果两边类型不同，则直接是<span class="token boolean">false</span>，不会转换数据类型「推荐」
+
+练习题：
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="js-骚-操作之0-1-0-2-0-3"><a href="#js-骚-操作之0-1-0-2-0-3" class="header-anchor">#</a> JS“骚”操作之0.1+0.2!==0.3</h2> <div class="language-js extra-class"><pre class="language-js"><code>@<span class="token number">1</span> 十进制转换为二进制的计算 n<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token operator">+</span> 整数部分
+    <span class="token operator">+</span> 小数部分
+@<span class="token number">2</span> <span class="token constant">JS</span>使用Number类型表示数字（整数和浮点数），遵循<span class="token constant">IEEE</span><span class="token operator">-</span><span class="token number">754</span>标准 通过<span class="token number">64</span>位二进制值来表示一个数字
+    <span class="token literal-property property">https</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>babbage<span class="token punctuation">.</span>cs<span class="token punctuation">.</span>qc<span class="token punctuation">.</span>cuny<span class="token punctuation">.</span>edu<span class="token operator">/</span><span class="token constant">IEEE</span><span class="token operator">-</span><span class="token number">754</span><span class="token punctuation">.</span>old<span class="token operator">/</span>Decimal<span class="token punctuation">.</span>html
+    第<span class="token number">0</span>位：符号位，<span class="token number">0</span>表示正数，<span class="token number">1</span>表示负数 <span class="token constant">S</span>
+    第<span class="token number">1</span>位到第<span class="token number">11</span>位「<span class="token number">11</span>位指数」：储存指数部分 <span class="token constant">E</span>
+    第<span class="token number">12</span>位到第<span class="token number">63</span>位「<span class="token number">52</span>位尾数」：储存小数部分（即有效数字）<span class="token constant">F</span>
+    注：尾数部分在规约形式下第一位默认为<span class="token number">1</span>（省略不写）
+@<span class="token number">3</span> 最大安全数字「<span class="token number">16</span>位」 Number<span class="token punctuation">.</span><span class="token constant">MAX_SAFE_INTEGER</span> <span class="token operator">===</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">53</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+@<span class="token number">4</span> 怎么解决精度问题？
+    <span class="token operator">+</span> 将数字转成整数「扩大系数」
+    <span class="token operator">+</span> 三方库：Math<span class="token punctuation">.</span>js 、decimal<span class="token punctuation">.</span>js、big<span class="token punctuation">.</span>js <span class="token operator">...</span>
+
+
+<span class="token comment">// 获取系数</span>
+<span class="token keyword">const</span> <span class="token function-variable function">coefficient</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">coefficient</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    num <span class="token operator">=</span> num <span class="token operator">+</span> <span class="token string">''</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> <span class="token punctuation">[</span><span class="token punctuation">,</span> char <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">]</span> <span class="token operator">=</span> num<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        len <span class="token operator">=</span> char<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 求和操作</span>
+<span class="token keyword">const</span> <span class="token function-variable function">plus</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">plus</span><span class="token punctuation">(</span><span class="token parameter">num1<span class="token punctuation">,</span> num2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    num1 <span class="token operator">=</span> <span class="token operator">+</span>num1<span class="token punctuation">;</span>
+    num2 <span class="token operator">=</span> <span class="token operator">+</span>num2<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isNaN</span><span class="token punctuation">(</span>num1<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">isNaN</span><span class="token punctuation">(</span>num2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">NaN</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> coeffic <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token function">coefficient</span><span class="token punctuation">(</span>num1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">coefficient</span><span class="token punctuation">(</span>num2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>num1 <span class="token operator">*</span> coeffic <span class="token operator">+</span> num2 <span class="token operator">*</span> coeffic<span class="token punctuation">)</span> <span class="token operator">/</span> coeffic<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.12ae27ff.js" defer></script><script src="/docs/assets/js/2.7f2a990c.js" defer></script><script src="/docs/assets/js/61.2c02fadd.js" defer></script>
+  </body>
+</html>

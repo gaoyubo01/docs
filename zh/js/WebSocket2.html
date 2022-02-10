@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>1. 心跳重连原由 | 前端知识集锦</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/docs/assets/img/gyb1.png">
+    <meta name="description" content="前端知识集锦">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.08317ef2.css" as="style"><link rel="preload" href="/docs/assets/js/app.12ae27ff.js" as="script"><link rel="preload" href="/docs/assets/js/2.7f2a990c.js" as="script"><link rel="preload" href="/docs/assets/js/63.87413035.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.f0612090.js"><link rel="prefetch" href="/docs/assets/js/100.ba5bfb53.js"><link rel="prefetch" href="/docs/assets/js/101.9c092833.js"><link rel="prefetch" href="/docs/assets/js/102.227854d0.js"><link rel="prefetch" href="/docs/assets/js/103.7a2f28f1.js"><link rel="prefetch" href="/docs/assets/js/104.b674f292.js"><link rel="prefetch" href="/docs/assets/js/105.34f4c8bd.js"><link rel="prefetch" href="/docs/assets/js/106.d4e06734.js"><link rel="prefetch" href="/docs/assets/js/107.94e8975a.js"><link rel="prefetch" href="/docs/assets/js/108.9f52a89f.js"><link rel="prefetch" href="/docs/assets/js/109.2a561999.js"><link rel="prefetch" href="/docs/assets/js/11.c06f6a3e.js"><link rel="prefetch" href="/docs/assets/js/110.c86699fa.js"><link rel="prefetch" href="/docs/assets/js/111.c6b9419f.js"><link rel="prefetch" href="/docs/assets/js/112.c7157643.js"><link rel="prefetch" href="/docs/assets/js/113.476e0465.js"><link rel="prefetch" href="/docs/assets/js/114.e804e8ec.js"><link rel="prefetch" href="/docs/assets/js/115.88544413.js"><link rel="prefetch" href="/docs/assets/js/12.de70ccbe.js"><link rel="prefetch" href="/docs/assets/js/13.36fefcf5.js"><link rel="prefetch" href="/docs/assets/js/14.b7be46fd.js"><link rel="prefetch" href="/docs/assets/js/15.6b11697f.js"><link rel="prefetch" href="/docs/assets/js/16.22813a68.js"><link rel="prefetch" href="/docs/assets/js/17.816d27cd.js"><link rel="prefetch" href="/docs/assets/js/18.6a29b08c.js"><link rel="prefetch" href="/docs/assets/js/19.366d661b.js"><link rel="prefetch" href="/docs/assets/js/20.23e3ce09.js"><link rel="prefetch" href="/docs/assets/js/21.ff1497d5.js"><link rel="prefetch" href="/docs/assets/js/22.6868bb3c.js"><link rel="prefetch" href="/docs/assets/js/23.bd929923.js"><link rel="prefetch" href="/docs/assets/js/24.01892ba6.js"><link rel="prefetch" href="/docs/assets/js/25.228f2562.js"><link rel="prefetch" href="/docs/assets/js/26.123c3f24.js"><link rel="prefetch" href="/docs/assets/js/27.fc51838a.js"><link rel="prefetch" href="/docs/assets/js/28.fc384cfc.js"><link rel="prefetch" href="/docs/assets/js/29.16971a76.js"><link rel="prefetch" href="/docs/assets/js/3.0402e6ef.js"><link rel="prefetch" href="/docs/assets/js/30.f637b189.js"><link rel="prefetch" href="/docs/assets/js/31.854313a1.js"><link rel="prefetch" href="/docs/assets/js/32.1013e1a4.js"><link rel="prefetch" href="/docs/assets/js/33.44307ee3.js"><link rel="prefetch" href="/docs/assets/js/34.68c4cb87.js"><link rel="prefetch" href="/docs/assets/js/35.d36b191d.js"><link rel="prefetch" href="/docs/assets/js/36.45fb4331.js"><link rel="prefetch" href="/docs/assets/js/37.8108cd53.js"><link rel="prefetch" href="/docs/assets/js/38.9f8770c9.js"><link rel="prefetch" href="/docs/assets/js/39.1af239f1.js"><link rel="prefetch" href="/docs/assets/js/4.70399a60.js"><link rel="prefetch" href="/docs/assets/js/40.eebf8f04.js"><link rel="prefetch" href="/docs/assets/js/41.da834437.js"><link rel="prefetch" href="/docs/assets/js/42.a215ccc8.js"><link rel="prefetch" href="/docs/assets/js/43.53e92a61.js"><link rel="prefetch" href="/docs/assets/js/44.60ee5ff5.js"><link rel="prefetch" href="/docs/assets/js/45.1b581a6c.js"><link rel="prefetch" href="/docs/assets/js/46.d0c3f501.js"><link rel="prefetch" href="/docs/assets/js/47.b390aeea.js"><link rel="prefetch" href="/docs/assets/js/48.44f2c2c8.js"><link rel="prefetch" href="/docs/assets/js/49.5f56efe0.js"><link rel="prefetch" href="/docs/assets/js/5.4a2aaf5b.js"><link rel="prefetch" href="/docs/assets/js/50.d066268b.js"><link rel="prefetch" href="/docs/assets/js/51.5e5299fa.js"><link rel="prefetch" href="/docs/assets/js/52.d0582b86.js"><link rel="prefetch" href="/docs/assets/js/53.32818fed.js"><link rel="prefetch" href="/docs/assets/js/54.b628e459.js"><link rel="prefetch" href="/docs/assets/js/55.a6b4d11b.js"><link rel="prefetch" href="/docs/assets/js/56.7d9b656d.js"><link rel="prefetch" href="/docs/assets/js/57.15e33faa.js"><link rel="prefetch" href="/docs/assets/js/58.8a48268e.js"><link rel="prefetch" href="/docs/assets/js/59.1f3db316.js"><link rel="prefetch" href="/docs/assets/js/6.8cda7b0a.js"><link rel="prefetch" href="/docs/assets/js/60.cbc8c445.js"><link rel="prefetch" href="/docs/assets/js/61.2c02fadd.js"><link rel="prefetch" href="/docs/assets/js/62.d6fbb492.js"><link rel="prefetch" href="/docs/assets/js/64.a4fb6045.js"><link rel="prefetch" href="/docs/assets/js/65.596c7a29.js"><link rel="prefetch" href="/docs/assets/js/66.d5b16085.js"><link rel="prefetch" href="/docs/assets/js/67.95d3305c.js"><link rel="prefetch" href="/docs/assets/js/68.558c9357.js"><link rel="prefetch" href="/docs/assets/js/69.7dee7edc.js"><link rel="prefetch" href="/docs/assets/js/7.5b67fd07.js"><link rel="prefetch" href="/docs/assets/js/70.05a6639e.js"><link rel="prefetch" href="/docs/assets/js/71.6302fc88.js"><link rel="prefetch" href="/docs/assets/js/72.d8b3948d.js"><link rel="prefetch" href="/docs/assets/js/73.35d5c961.js"><link rel="prefetch" href="/docs/assets/js/74.5f71638e.js"><link rel="prefetch" href="/docs/assets/js/75.f84ff077.js"><link rel="prefetch" href="/docs/assets/js/76.c56d04fc.js"><link rel="prefetch" href="/docs/assets/js/77.fd02eab3.js"><link rel="prefetch" href="/docs/assets/js/78.e46ac28a.js"><link rel="prefetch" href="/docs/assets/js/79.fcd8de88.js"><link rel="prefetch" href="/docs/assets/js/8.a1260e84.js"><link rel="prefetch" href="/docs/assets/js/80.2c52d0b4.js"><link rel="prefetch" href="/docs/assets/js/81.e7c48451.js"><link rel="prefetch" href="/docs/assets/js/82.aaedbf3e.js"><link rel="prefetch" href="/docs/assets/js/83.6fdc1f8e.js"><link rel="prefetch" href="/docs/assets/js/84.23974e95.js"><link rel="prefetch" href="/docs/assets/js/85.840b2296.js"><link rel="prefetch" href="/docs/assets/js/86.43dc4af9.js"><link rel="prefetch" href="/docs/assets/js/87.ff94fa5b.js"><link rel="prefetch" href="/docs/assets/js/88.e643fd60.js"><link rel="prefetch" href="/docs/assets/js/89.b170c005.js"><link rel="prefetch" href="/docs/assets/js/9.b6f8893c.js"><link rel="prefetch" href="/docs/assets/js/90.5984f45f.js"><link rel="prefetch" href="/docs/assets/js/91.79d4a2e2.js"><link rel="prefetch" href="/docs/assets/js/92.af83c55f.js"><link rel="prefetch" href="/docs/assets/js/93.b662f0e8.js"><link rel="prefetch" href="/docs/assets/js/94.134eff3e.js"><link rel="prefetch" href="/docs/assets/js/95.323ad2ca.js"><link rel="prefetch" href="/docs/assets/js/96.f74e94bc.js"><link rel="prefetch" href="/docs/assets/js/97.16dbfea1.js"><link rel="prefetch" href="/docs/assets/js/98.00b2f9a6.js"><link rel="prefetch" href="/docs/assets/js/99.87dcb180.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.08317ef2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><!----> <span class="site-name">前端知识集锦</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/zh/standard/Start.html" class="nav-link">
+  快速搭建开发环境
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心知识" class="dropdown-title"><span class="title">核心知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心知识" class="mobile-dropdown-title"><span class="title">核心知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/js/stack.html" class="nav-link">
+  堆栈内存及闭包作用域
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/TypeConversion.html" class="nav-link">
+  探索JS中的数据类型转换
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/amd.html" class="nav-link">
+  AMD设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/object.html" class="nav-link">
+  面向对象
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/eventloop.html" class="nav-link">
+  事件循环
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/render.html" class="nav-link">
+  底层渲染
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/request.html" class="nav-link">
+  数据请求
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/HTTP.html" class="nav-link">
+  HTTP网络层的 “前端性能优化”
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket.html" class="nav-link">
+  WebSocket 详解
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket2.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  WebSocket心跳检测和重连机制
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/zh/algorithm/Index.html" class="nav-link">
+  算法
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目相关" class="dropdown-title"><span class="title">项目相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="项目相关" class="mobile-dropdown-title"><span class="title">项目相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Standard.html" class="nav-link">
+  前端规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Git.html" class="nav-link">
+  Git规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Project.html" class="nav-link">
+  项目流程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cooperation.html" class="nav-link">
+  前后端交互
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Compatibility.html" class="nav-link">
+  移动端兼容问题
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Improve.html" class="nav-link">
+  项目优化
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cache.html" class="nav-link">
+  浏览器缓存
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Spa.html" class="nav-link">
+  单页面应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Pwa.html" class="nav-link">
+  渐进式web应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Security.html" class="nav-link">
+  网络安全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="经典面试题" class="dropdown-title"><span class="title">经典面试题</span> <span class="arrow down"></span></button> <button type="button" aria-label="经典面试题" class="mobile-dropdown-title"><span class="title">经典面试题</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/interview/index.html" class="nav-link">
+  面试必看
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/interview/threeYear.html" class="nav-link">
+  三年前端
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/book/" class="nav-link">
+  前端面试大全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架原理" class="dropdown-title"><span class="title">框架原理</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架原理" class="mobile-dropdown-title"><span class="title">框架原理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://segmentfault.com/a/1190000018399478" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://mp.weixin.qq.com/s/aqszbRAFXK5KA9x374Todg" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/docs/zh/IReact/" class="nav-link">
+  React源码解读
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识点笔记" class="dropdown-title"><span class="title">知识点笔记</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识点笔记" class="mobile-dropdown-title"><span class="title">知识点笔记</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/miniapp/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/webpack/" class="nav-link">
+  Webpack
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Hooks.html" class="nav-link">
+  React Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/typescript.html" class="nav-link">
+  TypeScript 基础用法
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/deepTypescript.html" class="nav-link">
+  TypeScript 高级用法
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/zh/standard/Start.html" class="nav-link">
+  快速搭建开发环境
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心知识" class="dropdown-title"><span class="title">核心知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心知识" class="mobile-dropdown-title"><span class="title">核心知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/js/stack.html" class="nav-link">
+  堆栈内存及闭包作用域
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/TypeConversion.html" class="nav-link">
+  探索JS中的数据类型转换
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/amd.html" class="nav-link">
+  AMD设计模式
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/object.html" class="nav-link">
+  面向对象
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/eventloop.html" class="nav-link">
+  事件循环
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/render.html" class="nav-link">
+  底层渲染
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/request.html" class="nav-link">
+  数据请求
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/HTTP.html" class="nav-link">
+  HTTP网络层的 “前端性能优化”
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket.html" class="nav-link">
+  WebSocket 详解
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/js/WebSocket2.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  WebSocket心跳检测和重连机制
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/zh/algorithm/Index.html" class="nav-link">
+  算法
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="项目相关" class="dropdown-title"><span class="title">项目相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="项目相关" class="mobile-dropdown-title"><span class="title">项目相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Standard.html" class="nav-link">
+  前端规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Git.html" class="nav-link">
+  Git规范
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Project.html" class="nav-link">
+  项目流程
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cooperation.html" class="nav-link">
+  前后端交互
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Compatibility.html" class="nav-link">
+  移动端兼容问题
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Improve.html" class="nav-link">
+  项目优化
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Cache.html" class="nav-link">
+  浏览器缓存
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Spa.html" class="nav-link">
+  单页面应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Pwa.html" class="nav-link">
+  渐进式web应用
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Security.html" class="nav-link">
+  网络安全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="经典面试题" class="dropdown-title"><span class="title">经典面试题</span> <span class="arrow down"></span></button> <button type="button" aria-label="经典面试题" class="mobile-dropdown-title"><span class="title">经典面试题</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/interview/index.html" class="nav-link">
+  面试必看
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/interview/threeYear.html" class="nav-link">
+  三年前端
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/book/" class="nav-link">
+  前端面试大全
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架原理" class="dropdown-title"><span class="title">框架原理</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架原理" class="mobile-dropdown-title"><span class="title">框架原理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://segmentfault.com/a/1190000018399478" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://mp.weixin.qq.com/s/aqszbRAFXK5KA9x374Todg" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/docs/zh/IReact/" class="nav-link">
+  React源码解读
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="知识点笔记" class="dropdown-title"><span class="title">知识点笔记</span> <span class="arrow down"></span></button> <button type="button" aria-label="知识点笔记" class="mobile-dropdown-title"><span class="title">知识点笔记</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/zh/vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/react/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/miniapp/" class="nav-link">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/webpack/" class="nav-link">
+  Webpack
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/standard/Hooks.html" class="nav-link">
+  React Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/typescript.html" class="nav-link">
+  TypeScript 基础用法
+</a></li><li class="dropdown-item"><!----> <a href="/docs/zh/summary/deepTypescript.html" class="nav-link">
+  TypeScript 高级用法
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>1. 心跳重连原由</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/zh/js/WebSocket2.html#_1-心跳重连原由" class="sidebar-link">1. 心跳重连原由</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/zh/js/WebSocket2.html#前端断开" class="sidebar-link">前端断开</a></li><li class="sidebar-sub-header"><a href="/docs/zh/js/WebSocket2.html#后端断开" class="sidebar-link">后端断开</a></li></ul></li><li><a href="/docs/zh/js/WebSocket2.html#_2-心跳重连的简单实现" class="sidebar-link">2. 心跳重连的简单实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/zh/js/WebSocket2.html#_2-1-通过createwebsocket创建连接" class="sidebar-link">2.1 通过createWebSocket创建连接</a></li><li class="sidebar-sub-header"><a href="/docs/zh/js/WebSocket2.html#_2-2-创建init方法-初始化一些监听事件-如果希望websocket连接一直保持-我们会在close或者error上绑定重新连接方法。" class="sidebar-link">2.2 创建init方法，初始化一些监听事件，如果希望websocket连接一直保持, 我们会在close或者error上绑定重新连接方法。</a></li><li class="sidebar-sub-header"><a href="/docs/zh/js/WebSocket2.html#_2-3-重连操作-通过设置lockreconnect变量避免重复连接" class="sidebar-link">2.3 重连操作，通过设置lockReconnect变量避免重复连接</a></li><li class="sidebar-sub-header"><a href="/docs/zh/js/WebSocket2.html#_2-4-心跳检测" class="sidebar-link">2.4 心跳检测</a></li></ul></li><li><a href="/docs/zh/js/WebSocket2.html#总结" class="sidebar-link">总结</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-心跳重连原由"><a href="#_1-心跳重连原由" class="header-anchor">#</a> 1. 心跳重连原由</h2> <p>心跳和重连的目的用一句话概括就是客户端和服务端保证彼此还活着，避免丢包发生。</p> <p>websocket连接断开有以下两证情况：</p> <h3 id="前端断开"><a href="#前端断开" class="header-anchor">#</a> 前端断开</h3> <p>在使用websocket过程中，可能会出现网络断开的情况，比如信号不好，或者网络临时关闭，这时候websocket的连接已经断开，而不同浏览器有不同的机制，触发onclose的时机也不同，并不会理想执行websocket的onclose方法，我们无法知道是否断开连接，也就无法进行重连操作。</p> <h3 id="后端断开"><a href="#后端断开" class="header-anchor">#</a> 后端断开</h3> <p>如果后端因为一些情况需要断开ws，在可控情况下，会下发一个断连的消息通知，之后才会断开，我们便会重连。
+如果因为一些异常断开了连接，我们是不会感应到的，所以如果我们发送了心跳一定时间之后，后端既没有返回心跳响应消息，前端又没有收到任何其他消息的话，我们就能断定后端主动断开了。</p> <p>因此需要一种机制来检测客户端和服务端是否处于正常连接的状态。通过在指定时间间隔发送心跳包来保证连接正常，如果连接出现问题，就需要手动触发onclose事件，这时候便可进行重连操作。因此websocket心跳重连就应运而生。</p> <h2 id="_2-心跳重连的简单实现"><a href="#_2-心跳重连的简单实现" class="header-anchor">#</a> 2. 心跳重连的简单实现</h2> <h3 id="_2-1-通过createwebsocket创建连接"><a href="#_2-1-通过createwebsocket创建连接" class="header-anchor">#</a> 2.1 通过createWebSocket创建连接</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">createWebSocket</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    ws <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket</span><span class="token punctuation">(</span>wsUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'catch'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">reconnect</span><span class="token punctuation">(</span>wsUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_2-2-创建init方法-初始化一些监听事件-如果希望websocket连接一直保持-我们会在close或者error上绑定重新连接方法。"><a href="#_2-2-创建init方法-初始化一些监听事件-如果希望websocket连接一直保持-我们会在close或者error上绑定重新连接方法。" class="header-anchor">#</a> 2.2 创建init方法，初始化一些监听事件，如果希望websocket连接一直保持, 我们会在close或者error上绑定重新连接方法。</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  ws<span class="token punctuation">.</span><span class="token function-variable function">onclose</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'链接关闭'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">reconnect</span><span class="token punctuation">(</span>wsUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  ws<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'发生异常了'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">reconnect</span><span class="token punctuation">(</span>wsUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  ws<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//心跳检测重置</span>
+    heartCheck<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  ws<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'接收到消息'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//拿到任何消息都说明当前连接是正常的</span>
+    heartCheck<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_2-3-重连操作-通过设置lockreconnect变量避免重复连接"><a href="#_2-3-重连操作-通过设置lockreconnect变量避免重复连接" class="header-anchor">#</a> 2.3 重连操作，通过设置lockReconnect变量避免重复连接</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> lockReconnect <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment">//避免重复连接</span>
+<span class="token keyword">function</span> <span class="token function">reconnect</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>lockReconnect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      lockReconnect <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token comment">//没连接上会一直重连，设置延迟避免请求过多</span>
+      tt <span class="token operator">&amp;&amp;</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span>tt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      tt <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">createWebSocket</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lockReconnect <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">4000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_2-4-心跳检测"><a href="#_2-4-心跳检测" class="header-anchor">#</a> 2.4 心跳检测</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//心跳检测</span>
+<span class="token keyword">var</span> heartCheck <span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">timeout</span><span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span> <span class="token comment">//每隔三秒发送心跳</span>
+      <span class="token literal-property property">severTimeout</span><span class="token operator">:</span> <span class="token number">5000</span><span class="token punctuation">,</span>  <span class="token comment">//服务端超时时间</span>
+      <span class="token literal-property property">timeoutObj</span><span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">serverTimeoutObj</span><span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">start</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> _this <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>timeoutObj <span class="token operator">&amp;&amp;</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>timeoutObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>serverTimeoutObj <span class="token operator">&amp;&amp;</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>serverTimeoutObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>timeoutObj <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+              <span class="token comment">//这里发送一个心跳，后端收到后，返回一个心跳消息，</span>
+              <span class="token comment">//onmessage拿到返回的心跳就说明连接正常</span>
+              ws<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">&quot;123456789&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 心跳包</span>
+              <span class="token comment">//计算答复的超时时间</span>
+              _this<span class="token punctuation">.</span>serverTimeoutObj <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  ws<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span> _this<span class="token punctuation">.</span>severTimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>timeout<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>有的时候，客户端发送3次心跳包服务端均未回复才判定为失去连接，所以这时需要加上计数来判断。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//心跳检测</span>
+<span class="token keyword">var</span> heartCheck <span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">timeout</span><span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span> <span class="token comment">//每隔三秒发送心跳</span>
+      <span class="token literal-property property">num</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>  <span class="token comment">//3次心跳均未响应重连</span>
+      <span class="token literal-property property">timeoutObj</span><span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">serverTimeoutObj</span><span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">start</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> _this <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> _num <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>num<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>timeoutObj <span class="token operator">&amp;&amp;</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>timeoutObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>serverTimeoutObj <span class="token operator">&amp;&amp;</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>serverTimeoutObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>timeoutObj <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+              <span class="token comment">//这里发送一个心跳，后端收到后，返回一个心跳消息，</span>
+              <span class="token comment">//onmessage拿到返回的心跳就说明连接正常</span>
+              ws<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">&quot;123456789&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 心跳包</span>
+              _num<span class="token operator">--</span><span class="token punctuation">;</span>
+              <span class="token comment">//计算答复的超时次数</span>
+              <span class="token keyword">if</span><span class="token punctuation">(</span>_num <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   ws<span class="token punctuation">.</span><span class="token function">colse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>timeout<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>我们确认了后端单台服务器的处理能力有限，因此。我们需要做集群。其次我们为了不让前端关闭或回收，后端不响应。我们需要设置心跳，定时清除无关的连接。
+最后，我们需要有消息确认机制，做到保证消息的100%接收。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.12ae27ff.js" defer></script><script src="/docs/assets/js/2.7f2a990c.js" defer></script><script src="/docs/assets/js/63.87413035.js" defer></script>
+  </body>
+</html>
